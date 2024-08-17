@@ -36,3 +36,23 @@ iframe {
     border: 2px solid #ccc; /* 枠線を追加 */
     border-radius: 10px; /* 角を丸める */
 }
+
+/* スマートフォン用のレスポンシブデザイン */
+@media (max-width: 768px) {
+    /* 選択欄の幅を調整 */
+    select {
+        width: 90%; /* 幅を90%に設定 */
+    }
+
+    /* パスコード入力フォームの幅を調整 */
+    #access-form input[type="password"], #access-form button {
+        width: 90%; /* 幅を90%に設定 */
+        max-width: none; /* 最大幅を解除 */
+    }
+
+    /* PDFビューアのサイズを調整 */
+    iframe {
+        width: 100%; /* 幅を100%に設定 */
+        height: 400px; /* 高さを400pxに設定 */
+    }
+}
