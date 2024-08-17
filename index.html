@@ -32,7 +32,10 @@
             <option value="">選択してください</option>
         </select>
         <br>
-        <iframe id="pdf-viewer" src="" type="application/pdf"></iframe>
+        <div id="pdf-container">
+            <iframe id="pdf-viewer" src="" type="application/pdf"></iframe>
+            <p id="pdf-link" style="display: none;"><a href="" target="_blank">PDFを別タブで開く</a></p>
+        </div>
     </div>
 
     <script src="script.js"></script>
