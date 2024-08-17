@@ -27,20 +27,20 @@ select {
     padding: 12px 20px;
 }
 
-/* PDFビューアのスタイル */
-iframe {
-    width: 80%;
-    height: 100vh; /* ビューポートの高さを基準にする */
+/* PDF表示用キャンバス */
+canvas {
     margin: 20px auto;
-    display: block;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 10px;
 }
 
-/* スマートフォン向けスタイル */
-@media screen and (max-width: 600px) {
-    iframe {
-        width: 100%;
-        height: calc(100vh - 100px); /* ビューポートの高さからヘッダーや余白を引いた高さに設定 */
-    }
+/* ページコントロールのスタイル */
+#page-controls {
+    margin-top: 10px;
+}
+
+button {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin: 5px;
 }
