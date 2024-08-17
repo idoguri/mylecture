@@ -1,0 +1,78 @@
+/* 全体スタイル */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* コンテナのスタイル */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* パスコード入力フォームのスタイル */
+#access-form input[type="password"] {
+    font-size: 1.5em;
+    padding: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+#access-form button {
+    font-size: 1.5em;
+    padding: 12px 20px;
+}
+
+/* 科目と単元の選択欄のスタイル */
+select {
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    max-width: 300px;
+}
+
+/* PDFビューアのスタイル */
+#pdf-container {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* ビューポートの高さの80% */
+    margin: 20px auto;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: block;
+}
+
+/* スマートフォン用のスタイル調整 */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    select {
+        width: 100%;
+        font-size: 1.1em;
+    }
+
+    #pdf-container {
+        height: 90vh; /* ビューポートの高さの90% */
+    }
+
+    iframe {
+        height: 100%;
+        object-fit: contain; /* PDF全体を表示 */
+    }
+
+    #pdf-link {
+        display: block;
+        margin-top: 20px;
+    }
+}
