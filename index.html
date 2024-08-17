@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>講義資料保存サイト</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="access-form" class="container">
+        <h1>パスコードを入力してください</h1>
+        <input type="password" id="password" placeholder="パスコード">
+        <button onclick="checkPassword()">送信</button>
+        <p id="error-message" style="color: red; display: none;">パスコードが間違っています。</p>
+    </div>
+
+    <div id="content" class="container" style="display: none;">
+        <h1>講義資料保存サイト</h1>
+        <label for="subject">科目を選択:</label>
+        <select id="subject" onchange="updateUnits()">
+            <option value="">選択してください</option>
+            <option value="math1">数学Ⅰ</option>
+            <option value="math2">数学Ⅱ</option>
+            <option value="mathA">数学A</option>
+            <option value="mathB">数学B</option>
+            <option value="mathC">数学C</option>
+        </select>
+        <br>
+        <label for="unit">単元を選択:</label>
+        <select id="unit" onchange="updatePDF()">
+            <option value="">選択してください</option>
+        </select>
+        <br>
+        <iframe id="pdf-viewer" src="" type="application/pdf"></iframe>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

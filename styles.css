@@ -1,0 +1,28 @@
+/* コンテナのスタイル */
+.container {
+    text-align: center; /* テキストとフォームを中央に寄せる */
+    margin: 20px auto; /* 上下のマージンを設定し、中央に配置 */
+}
+
+/* 科目と単元の選択欄のスタイル */
+select {
+    font-size: 1.2em; /* フォントサイズを大きくする */
+    padding: 10px; /* 内側の余白を増やす */
+    margin: 10px; /* 外側の余白を設定 */
+    width: 50%; /* 幅を設定し、中央に寄せる */
+    max-width: 300px; /* 最大幅を設定 */
+}
+
+/* パスコード入力フォームのスタイル */
+#access-form input[type="password"] {
+    font-size: 1.5em; /* フォントサイズを大きくする */
+    padding: 12px; /* 内側の余白を増やす */
+    width: 100%; /* 幅を全体に広げる */
+    max-width: 400px; /* 最大幅を設定 */
+    margin-bottom: 20px; /* 下の余白を増やす */
+}
+
+#access-form button {
+    font-size: 1.5em; /* フォントサイズを大きくする */
+    padding: 12px 20px; /* 内側の余白を増やす */
+}
