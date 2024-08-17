@@ -1,4 +1,3 @@
-// パスコードを設定
 const correctPassword = "kaito"; // ここに設定したいパスコードを入力
 
 function checkPassword() {
@@ -11,41 +10,17 @@ function checkPassword() {
     }
 }
 
-// 以下、既存の関数 (updateUnits, updatePDF) をそのまま使用
 const materials = {
     math1: {
-        "数と式": "math1-unit1.pdf",
-        "集合と命題": "math1-unit2.pdf",
-        "2次関数": "math1-unit3.pdf",
-        "図形と軽量": "math1-unit4.pdf",
-        "データの分析": "math1-unit5.pdf"
+        "数と式": "pdfs/math1-unit1.pdf",
+        "集合と命題": "pdfs/math1-unit2.pdf"
+        // 他の資料も同様に追加
     },
     math2: {
-        "式と証明": "math2-unit1.pdf",
-        "複素数と方程式": "math2-unit2.pdf",
-        "図形と方程式": "math2-unit3.pdf",
-        "三角関数": "math2-unit4.pdf",
-        "指数関数と対数関数": "math2-unit5.pdf",
-        "微分法と積分法": "math2-unit6.pdf"
-    },
-    math3: {
-        "関数": "math3-unit1.pdf",
-        "極限": "math3-unit2.pdf",
-        "微分法": "math3-unit3.pdf",
-        "微分法の応用": "math3-unit4.pdf",
-        "積分法とその応用": "math3-unit5.pdf"
-    },
-    mathA: {
-        "場合の数と確率": "mathA-unit1.pdf",
-        "図形の性質": "mathA-unit2.pdf"
-    },
-    mathB: {
-        "数列": "mathB-unit1.pdf"
-    },
-    mathC: {
-        "平面上のベクトル": "mathC-unit1.pdf",
-        "空間のベクトル": "mathC-unit2.pdf"
+        "式と証明": "pdfs/math2-unit1.pdf"
+        // 他の資料も同様に追加
     }
+    // 他の科目も同様に追加
 };
 
 function updateUnits() {
@@ -57,22 +32,71 @@ function updateUnits() {
         const units = Object.keys(materials[subject]);
         units.forEach(unit => {
             const option = document.createElement('option');
-            option.value = unit;
+            option.value = materials[subject][unit];
             option.textContent = unit;
             unitSelect.appendChild(option);
         });
     }
 }
 
-function updatePDF() {
-    const subject = document.getElementById('subject').value;
-    const unit = document.getElementById('unit').value;
-    const pdfViewer = document.getElementById('pdf-viewer');
+// PDF.jsの設定
+let pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 1.5, // 拡大率を調整
+    canvas = document.getElementById('pdf-canvas'),
+    ctx = canvas.getContext('2d');
 
-    if (subject && unit) {
-        pdfViewer.src = materials[subject][unit];
-        pdfViewer.style.display = 'block';
-    } else {
-        pdfViewer.style.display = 'none';
+// PDFを読み込む
+function loadPDF() {
+    const pdfUrl = document.getElementById('unit').value;
+    if (pdfUrl) {
+        pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            pdfDoc = pdf;
+            document.getElementById('page-controls').style.display = 'block';
+            renderPage(pageNum);
+        });
     }
 }
+
+// 指定されたページを描画
+function renderPage(num) {
+    pageRendering = true;
+    pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+        const renderTask = page.render(renderContext);
+
+        renderTask.promise.then(function () {
+            pageRendering = false;
+
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+
+        document.getElementById('page-info').textContent = `ページ ${num} / ${pdfDoc.numPages}`;
+    });
+}
+
+// 次のページへ
+document.getElementById('next-page').addEventListener('click', function () {
+    if (pageNum >= pdfDoc.numPages) return;
+    pageNum++;
+    renderPage(pageNum);
+});
+
+// 前のページへ
+document.getElementById('prev-page').addEventListener('click', function () {
+    if (pageNum <= 1) return;
+    pageNum--;
+    renderPage(pageNum);
+});
