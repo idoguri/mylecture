@@ -1,16 +1,15 @@
-/* コンテナのスタイル */
-.container {
+/* 全体スタイル */
+body {
+    font-family: Arial, sans-serif;
     text-align: center;
-    margin: 20px auto;
+    margin: 0;
+    padding: 0;
 }
 
-/* 科目と単元の選択欄のスタイル */
-select {
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 10px;
-    width: 50%;
-    max-width: 300px;
+/* コンテナのスタイル */
+.container {
+    width: 80%;
+    margin: 0 auto;
 }
 
 /* パスコード入力フォームのスタイル */
@@ -27,20 +26,38 @@ select {
     padding: 12px 20px;
 }
 
-/* PDF表示用キャンバス */
-canvas {
-    margin: 20px auto;
-    border: 1px solid #ccc;
+/* 科目と単元の選択欄のスタイル */
+select {
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    max-width: 300px;
+}
+
+/* PDFビューアのスタイル */
+iframe {
+    width: 80%;
+    height: 600px;
+    border: 2px solid #ccc;
     border-radius: 10px;
+    margin: 20px auto;
+    display: block;
 }
 
-/* ページコントロールのスタイル */
-#page-controls {
-    margin-top: 10px;
-}
+/* スマートフォン用のスタイル調整 */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
 
-button {
-    font-size: 1em;
-    padding: 10px 20px;
-    margin: 5px;
+    select {
+        width: 100%;
+        font-size: 1.1em;
+    }
+
+    iframe {
+        width: 100%;
+        height: 80vh; /* ビューポートの高さに合わせる */
+    }
 }
