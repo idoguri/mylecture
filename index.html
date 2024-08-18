@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- パスコード入力フォーム -->
     <div id="access-form" class="container">
         <h1>パスコードを入力してください</h1>
         <input type="password" id="password" placeholder="パスコード">
@@ -14,8 +15,21 @@
         <p id="error-message" style="color: red; display: none;">パスコードが間違っています。</p>
     </div>
 
+    <!-- メインコンテンツ -->
     <div id="content" class="container" style="display: none;">
         <h1>講義資料保存サイト</h1>
+        
+        <!-- ニュース欄の追加 -->
+        <div id="news-section" class="news-container">
+            <h2>最新ニュース</h2>
+            <ul>
+                <li><strong>2024年8月18日:</strong> サイトのデザインを更新しました。</li>
+                <li><strong>2024年8月10日:</strong> 数学Ⅰの資料を追加しました。</li>
+                <li><strong>2024年8月1日:</strong> サイトを公開しました。</li>
+            </ul>
+        </div>
+
+        <!-- 科目と単元の選択 -->
         <label for="subject">科目を選択:</label>
         <select id="subject" onchange="updateUnits()">
             <option value="">選択してください</option>
@@ -28,13 +42,16 @@
         </select>
         <br>
         <label for="unit">単元を選択:</label>
-        <select id="unit" onchange="updateLinks()">
+        <select id="unit" onchange="updatePDF()">
             <option value="">選択してください</option>
         </select>
         <br>
-        <div id="pdf-links" style="display: none;"></div>
+
+        <!-- PDFリンク -->
+        <div id="pdf-links" class="pdf-links-container"></div>
     </div>
 
+    <!-- スクリプトファイルの読み込み -->
     <script src="script.js"></script>
 </body>
 </html>
