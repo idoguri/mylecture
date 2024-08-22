@@ -51,13 +51,17 @@
             text-decoration: underline;
         }
 
-        #news-content {
-            padding: 20px;
-            border: 2px solid #007bff;
-            border-radius: 15px;
-            background-color: #f9f9f9;
-        }
-
+ /* ニュースの内容のみを丸みを帯びた枠で囲む */
+#news-content {
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    text-align: left; /* 内容を左寄せにする */
+    display: inline-block; /* コンテナのサイズに合わせて内容を左寄せにする */
+    margin: 0 auto; /* 中央揃えを解除する */
+    width: 100%; /* 必要に応じて幅を調整 */
+}
         @media (max-width: 768px) {
             .container {
                 width: 95%;
