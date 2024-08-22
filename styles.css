@@ -63,3 +63,33 @@ select {
         font-size: 1.1em;
     }
 }
+
+/* ニュース欄のスタイル */
+#news {
+    margin-top: 40px;
+    text-align: left;
+}
+
+#news h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+#news-list {
+    list-style: none;
+    padding: 0;
+}
+
+#news-list li {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#news-list li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#news-list li a:hover {
+    text-decoration: underline;
+}
