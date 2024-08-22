@@ -81,23 +81,3 @@ function updateLinks() {
         pdfLinksContainer.style.display = 'none';
     }
 }
-
-const news = [
-    { title: "新しい教材を追加しました", url: "#" },
-    { title: "数学Ⅱの授業資料を更新しました", url: "#" },
-    { title: "サイトのデザインを改善しました", url: "#" },
-];
-
-function updateNews() {
-    const newsList = document.getElementById('news-list');
-    news.forEach(newsItem => {
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = newsItem.url;
-        link.textContent = newsItem.title;
-        listItem.appendChild(link);
-        newsList.appendChild(listItem);
-    });
-}
-
-updateNews(); // ページ読み込み時にニュースを表示
