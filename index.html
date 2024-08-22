@@ -106,10 +106,9 @@
             <h2>更新情報</h2>
             <div id="news-content">
                 <ul>
-                    <li>2024年8月22日 - サイトに更新情報欄を追加しました。</li>
-                    <li>2024年8月21日 - 数学A第2章　図形の性質の資料しました。</li>
-                    <li>2024年8月20日 - 数学Ⅰ第4章　図形と計量の資料を追加しました。</li>
-                    <li>2024年8月17日 - サイトを公開しました。</li>
+                    <li>2024年8月22日 - サイトのレイアウトを改善しました。</li>
+                    <li>2024年8月20日 - 新しい講義資料を追加しました。</li>
+                    <li>2024年8月18日 - サイトを公開しました。</li>
                 </ul>
             </div>
         </div>
@@ -119,14 +118,17 @@
         const correctPassword = "kaito"; // ここに設定したいパスコードを入力
 
         function checkPassword() {
-            const password = document.getElementById('password').value;
-            if (password === correctPassword) {
-                document.getElementById('access-form').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-            } else {
-                document.getElementById('error-message').style.display = 'block';
-            }
-        }
+    const passwordField = document.getElementById('password');
+    const password = passwordField.value;
+    if (password === correctPassword) {
+        document.getElementById('access-form').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        passwordField.value = ''; // パスワード入力欄をクリア
+    } else {
+        document.getElementById('error-message').style.display = 'block';
+        passwordField.value = ''; // パスワード入力欄をクリア
+    }
+}
 
         // エンターキーでパスコード送信
         document.getElementById('password').addEventListener('keydown', function(event) {
