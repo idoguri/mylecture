@@ -87,7 +87,7 @@
     </div>
 
     <div id="content" class="container" style="display: none;">
-        <h1>Lecture Materials</h1>
+        <h1>井ノ口海斗の数学講座</h1>
         <label for="subject">科目を選択:</label>
         <select id="subject" onchange="updateUnits()">
             <option value="">選択してください</option>
@@ -104,12 +104,23 @@
             <option value="">選択してください</option>
         </select>
         <br>
+
+        <div id="question-links" style="display: none;">
+            <h3>質問回答集</h3>
+            <select id="question-unit" onchange="updateQuestionLinks()">
+                <option value="">選択してください</option>
+            </select>
+            <div id="question-pdf-links"></div>
+        </div>
+
         <div id="pdf-links" style="display: none;"></div>
         
         <div id="news" class="container">
-            <h2>Topics 〜2024.8.22更新〜</h2>
+            <h2>〜更新情報 2024.8.22更新〜</h2>
             <div id="news-content">
                 <ul>
+                    <li>2024年8月22日  質問回答集を閲覧できる項目を追加しました。科目を選択すると回答集の単元選択欄が出てきます。
+                    </li>
                     <li>2024年8月22日  サイトに更新情報の掲載欄を追加しました。</li>
                     <li>2024年8月21日  数学A図形の性質の講義資料をしました。</li>
                     <li>2024年8月20日  数学I図形と計量の講義資料を追加しました。</li>
@@ -123,17 +134,17 @@
         const correctPassword = "kaito"; // ここに設定したいパスコードを入力
 
         function checkPassword() {
-    const passwordField = document.getElementById('password');
-    const password = passwordField.value;
-    if (password === correctPassword) {
-        document.getElementById('access-form').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-        passwordField.value = ''; // パスワード入力欄をクリア
-    } else {
-        document.getElementById('error-message').style.display = 'block';
-        passwordField.value = ''; // パスワード入力欄をクリア
-    }
-}
+            const passwordField = document.getElementById('password');
+            const password = passwordField.value;
+            if (password === correctPassword) {
+                document.getElementById('access-form').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                passwordField.value = ''; // パスワード入力欄をクリア
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+                passwordField.value = ''; // パスワード入力欄をクリア
+            }
+        }
 
         // エンターキーでパスコード送信
         document.getElementById('password').addEventListener('keydown', function(event) {
@@ -178,6 +189,42 @@
             }
         };
 
+        const questionMaterials = {
+            math1: {
+                "数と式": "question-math1-unit1.pdf",
+                "集合と命題": "question-math1-unit2.pdf",
+                "2次関数": "question-math1-unit3.pdf",
+                "図形と軽量": "question-math1-unit4.pdf",
+                "データの分析": "question-math1-unit5.pdf"
+            },
+            math2: {
+                "式と証明": "question-math2-unit1.pdf",
+                "複素数と方程式": "question-math2-unit2.pdf",
+                "図形と方程式": "question-math2-unit3.pdf",
+                "三角関数": "question-math2-unit4.pdf",
+                "指数関数と対数関数": "question-math2-unit5.pdf",
+                "微分法と積分法": "question-math2-unit6.pdf"
+            },
+            math3: {
+                "関数": "question-math3-unit1.pdf",
+                "極限": "question-math3-unit2.pdf",
+                "微分法": "question-math3-unit3.pdf",
+                "微分法の応用": "question-math3-unit4.pdf",
+                "積分法とその応用": "question-math3-unit5.pdf"
+            },
+            mathA: {
+                "場合の数と確率": "question-mathA-unit1.pdf",
+                "図形の性質": "question-mathA-unit2.pdf"
+            },
+            mathB: {
+                "数列": "question-mathB-unit1.pdf"
+            },
+            mathC: {
+                "平面上のベクトル": "question-mathC-unit1.pdf",
+                "空間のベクトル": "question-mathC-unit2.pdf"
+            }
+        };
+
         function updateUnits() {
             const subject = document.getElementById('subject').value;
             const unitSelect = document.getElementById('unit');
@@ -191,6 +238,19 @@
                     option.textContent = unit;
                     unitSelect.appendChild(option);
                 });
+
+                // 質問回答集の単元リストを更新
+                const questionUnitSelect = document.getElementById('question-unit');
+                questionUnitSelect.innerHTML = '<option value="">選択してください</option>';
+                const questionUnits = Object.keys(questionMaterials[subject]);
+                questionUnits.forEach(unit => {
+                    const option = document.createElement('option');
+                    option.value = unit;
+                    option.textContent = unit;
+                    questionUnitSelect.appendChild(option);
+                });
+
+                document.getElementById('question-links').style.display = 'block';
             }
         }
 
@@ -206,11 +266,31 @@
                 const link = document.createElement('a');
                 link.href = pdfUrl;
                 link.target = '_blank'; // 新しいタブで開く
-                link.textContent = `PDF: ${unit}`;
+                link.textContent = '授業資料.pdf'; // ボタン名を「授業資料.pdf」に設定
                 pdfLinksContainer.appendChild(link);
                 pdfLinksContainer.style.display = 'block';
             } else {
                 pdfLinksContainer.style.display = 'none';
+            }
+        }
+
+        function updateQuestionLinks() {
+            const subject = document.getElementById('subject').value;
+            const unit = document.getElementById('question-unit').value;
+            const questionPdfLinksContainer = document.getElementById('question-pdf-links');
+
+            questionPdfLinksContainer.innerHTML = ''; // 既存のリンクをクリア
+
+            if (subject && unit) {
+                const pdfUrl = questionMaterials[subject][unit];
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.target = '_blank'; // 新しいタブで開く
+                link.textContent = '回答.pdf'; // ボタン名を「回答.pdf」に設定
+                questionPdfLinksContainer.appendChild(link);
+                questionPdfLinksContainer.style.display = 'block';
+            } else {
+                questionPdfLinksContainer.style.display = 'none';
             }
         }
     </script>
