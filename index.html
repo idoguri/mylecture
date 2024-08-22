@@ -19,12 +19,7 @@
         <label for="subject">科目を選択:</label>
         <select id="subject" onchange="updateUnits()">
             <option value="">選択してください</option>
-            <option value="math1">数学Ⅰ</option>
-            <option value="math2">数学Ⅱ</option>
-            <option value="math3">数学Ⅲ</option>
-            <option value="mathA">数学A</option>
-            <option value="mathB">数学B</option>
-            <option value="mathC">数学C</option>
+            <!-- 他の選択肢 -->
         </select>
         <br>
         <label for="unit">単元を選択:</label>
@@ -33,6 +28,12 @@
         </select>
         <br>
         <div id="pdf-links" style="display: none;"></div>
+
+        <!-- ニュース欄を追加 -->
+        <div id="news" class="container">
+            <h2>ニュース</h2>
+            <ul id="news-list"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>
