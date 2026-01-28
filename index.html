@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Materials Storage</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        select {
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 10px;
+            width: 50%;
+            max-width: 300px;
+        }
+
+        #pdf-links a {
+            display: block;
+            margin: 10px;
+            font-size: 1.2em;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #pdf-links a:hover {
+            text-decoration: underline;
+        }
+
+        #news-content {
+            padding: 20px;
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            background-color: #f9f9f9;
+            text-align: left;
+            display: inline-block;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            select {
+                width: 100%;
+                font-size: 1.1em;
+            }
+
+            #pdf-links a {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="container">
+        <h1>井ノ口海斗の数学サイト</h1>
+        <label for="subject">科目を選択:</label>
+        <select id="subject" onchange="updateUnits()">
+            <option value="">選択してください</option>
+            <option value="math1">数学Ⅰ</option>
+            <option value="math2">数学Ⅱ</option>
+            <option value="math3">数学Ⅲ</option>
+            <option value="mathA">数学A</option>
+            <option value="mathB">数学B</option>
+            <option value="mathC">数学C</option>
+        </select>
+        <br>
+        <label for="unit">単元を選択:</label>
+        <select id="unit" onchange="updateLinks()">
+            <option value="">選択してください</option>
+        </select>
+        <br>
+
+        <div id="pdf-links" style="display: none;"></div>
+
+        <div id="news" class="container">
+            <h2>〜更新情報　2025.7.24更新〜</h2>
+            <div id="news-content">
+                <ul>
+                    <li>2025年7月24日  一部資料の内容を更新しました。</li>
+                    <li>2025年5月15日  数学C式と曲線の資料を追加しました。</li>
+                    <li>2025年3月26日  数学C複素数平面の資料を追加しました。</li>
+                    <li>2025年3月19日  数学Ⅲの資料を追加しました。</li>
+                    <li>2024年8月17日  サイトを公開しました。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const materials = {
+            math1: {
+                "数と式": "math1-unit1.pdf",
+                "集合と命題": "math1-unit2.pdf",
+                "2次関数": "math1-unit3.pdf",
+                "図形と軽量": "math1-unit4.pdf",
+                "データの分析": "math1-unit5.pdf"
+            },
+            math2: {
+                "式と証明": "math2-unit1.pdf",
+                "複素数と方程式": "math2-unit2.pdf",
+                "図形と方程式": "math2-unit3.pdf",
+                "三角関数": "math2-unit4.pdf",
+                "指数関数と対数関数": "math2-unit5.pdf",
+                "微分法と積分法": "math2-unit6.pdf"
+            },
+            math3: {
+                "関数": "math3-unit1.pdf",
+                "極限": "math3-unit2.pdf",
+                "微分法": "math3-unit3.pdf",
+                "微分法の応用": "math3-unit4.pdf",
+                "積分法とその応用": "math3-unit5.pdf"
+            },
+            mathA: {
+                "場合の数と確率": "mathA-unit1.pdf",
+                "図形の性質": "mathA-unit2.pdf"
+            },
+            mathB: {
+                "数列": "mathB-unit1.pdf",
+                "統計的な推測": "mathB-unit2.pdf"
+            },
+            mathC: {
+                "平面上のベクトル": "mathC-unit1.pdf",
+                "空間のベクトル": "mathC-unit2.pdf",
+                "複素数平面": "mathC-unit3.pdf",
+                "式と曲線": "mathC-unit4.pdf"
+            }
+        };
+
+        function updateUnits() {
+            const subject = document.getElementById('subject').value;
+            const unitSelect = document.getElementById('unit');
+            unitSelect.innerHTML = '<option value="">選択してください</option>';
+
+            if (subject) {
+                const units = Object.keys(materials[subject]);
+                units.forEach(unit => {
+                    const option = document.createElement('option');
+                    option.value = unit;
+                    option.textContent = unit;
+                    unitSelect.appendChild(option);
+                });
+            }
+        }
+
+        function updateLinks() {
+            const subject = document.getElementById('subject').value;
+            const unit = document.getElementById('unit').value;
+            const pdfLinksContainer = document.getElementById('pdf-links');
+
+            pdfLinksContainer.innerHTML = '';
+
+            if (subject && unit) {
+                const pdfUrl = materials[subject][unit];
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.target = '_blank';
+                link.textContent = '授業資料.pdf';
+                pdfLinksContainer.appendChild(link);
+                pdfLinksContainer.style.display = 'block';
+            } else {
+                pdfLinksContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
