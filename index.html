@@ -74,17 +74,39 @@
     height: auto;
     display: block;
 }
+ .hero {
+    position: relative;
+    width: 100%;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 65%;        /* ← 下に配置する位置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1000px;
+}
 
 #content {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px 0;
-}
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 30px;
+    border-radius: 20px;
+}       
     </style>
 </head>
 <body>
     <div class="hero">
-    <img src="banner.png" alt="数礎海館"></div>
-    <div id="content" class="container">
+    <img src="banner.png" alt="数礎海館">
+        
+    <div class="overlay">
+        <div id="content" class="container"> 
         <label for="subject">科目を選択:</label>
         <select id="subject" onchange="updateUnits()">
             <option value="">選択してください</option>
@@ -116,6 +138,8 @@
                 </ul>
             </div>
         </div>
+    </div>
+</div>
     </div>
 
     <script>
