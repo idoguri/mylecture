@@ -6,6 +6,9 @@
     <title>Lecture Materials Storage</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        * {
+  box-sizing: border-box;
+          }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -14,14 +17,14 @@
         }
 
         .container {
-            width: 80%;
+            width: 100%;
             margin: 0 auto;
         }
 
         select {
             font-size: 1.2em;
             padding: 10px;
-            margin: 10px;
+            margin: 10px 0;
             width: 50%;
             max-width: 300px;
         }
@@ -50,9 +53,6 @@
         }
 
         @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
 
             select {
                 width: 100%;
@@ -63,23 +63,18 @@
                 font-size: 1.1em;
             }
         }
-        body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
 
  .hero {
     position: relative;
     width: 100%;
 }
 
-.hero img {
+ .hero img {
     width: 100%;
     height: auto;
 }
 
-.overlay {
+ .overlay {
     position: absolute;
     top: 70%;        /* ← 数字を大きくすると下に移動 */
     left: 50%;
