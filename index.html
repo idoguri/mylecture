@@ -93,7 +93,7 @@
     padding: 30px;
     border-radius: 20px;
 }       
-/* デフォルト：スマホ用は非表示 */ /* スマホ縦画面のとき */
+/* デフォルト：スマホ用は非表示 */ 
 .pc-image {
   display: block;
 }
@@ -101,7 +101,7 @@
 .sp-image {
   display: none;
 }
-
+/* スマホ縦画面のとき */
 @media (max-width: 768px) {
   .pc-image {
     display: none;
@@ -109,6 +109,11 @@
 
   .sp-image {
     display: block;
+  }
+
+  .overlay {
+    width: 95%;
+    top: 60%;
   }
 }
     </style>
